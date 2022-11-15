@@ -151,14 +151,14 @@ class interp2d():
 
         return arrayi
 
-    def OrdinaryKriging_2D(self, n_closest_points=None,variogram_model='linear', verbose=False, coordinates_type='euclidean',backend='vectorized'):
+    def OrdinaryKriging_2D(self, n_closest_points=None,variogram_model='linear', verbose=False, coordinates_type='euclidean',backend='vectorized', exact_values=False):
         # Credit from 'https://github.com/bsmurphy/PyKrige'
 
         if not pykrige_install:
             raise ValueError('Pykrige is not installed, try pip install pykrige')
 
         OK = OrdinaryKriging(self.x,self.y,self.z, variogram_model=variogram_model, verbose=verbose,
-                     enable_plotting=False, coordinates_type=coordinates_type)
+                     enable_plotting=False, coordinates_type=coordinates_type, exact_values=exact_values)
 
         x,y = np.arange(0,self.ncol), np.arange(0,self.nrow)
 
